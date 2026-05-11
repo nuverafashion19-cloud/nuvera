@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nuvera Fashion — Fine Women's Jewellery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --cream: #f5f0ea; --warm-white: #faf8f5; --black: #0d0d0d;
+      --charcoal: #2a2a2a; --muted: #8a7f74; --gold: #b89a6a;
+      --gold-light: #d4b896; --rose: #c9a49a;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--warm-white); color: var(--black); overflow-x: hidden; }
+
+    /* ══ NAV ══ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 60px; background: rgba(250,248,245,0.95);
+      backdrop-filter: blur(12px); border-bottom: 1px solid rgba(184,154,106,0.15);
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; letter-spacing: 4px; color: var(--black); text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--charcoal); font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 400; position: relative; padding-bottom: 2px; transition: color 0.3s; }
+    .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-icons { display: flex; gap: 20px; align-items: center; }
+    .nav-icons a { text-decoration: none; color: var(--charcoal); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+    .nav-icons a:hover { color: var(--gold); }
+    .cart-btn { background: var(--black); color: var(--cream) !important; padding: 10px 22px; font-size: 11px !important; letter-spacing: 2px; }
+    .cart-btn:hover { background: var(--gold); color: var(--black) !important; }
+
+    /* ══ HERO ══ */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 74px; }
+    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 80px 60px 80px 80px; position: relative; }
+    .hero-text::before { content: 'N'; position: absolute; top: 60px; right: -20px; font-family: 'Cormorant Garamond', serif; font-size: 320px; font-weight: 600; color: rgba(184,154,106,0.06); line-height: 1; pointer-events: none; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 5.5vw, 84px); font-weight: 300; line-height: 1.05; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-desc { font-size: 15px; color: var(--muted); line-height: 1.8; max-width: 400px; margin-bottom: 48px; font-weight: 300; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
+    .hero-actions { display: flex; gap: 16px; align-items: center; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; flex-wrap: wrap; }
+    .btn-primary { background: var(--black); color: var(--cream); padding: 16px 40px; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; border: 1px solid var(--black); transition: all 0.3s; cursor: pointer; display: inline-block; }
+    .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+    .btn-outline { color: var(--charcoal); padding: 16px 32px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(42,42,42,0.3); transition: all 0.3s; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-image { position: relative; overflow: hidden; background: var(--cream); opacity: 0; animation: fadeIn 1.2s 0.3s forwards; }
+    .hero-image img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+    .hero-image-inner { width: 100%; height: 100%; background: linear-gradient(135deg, #e8ddd3 0%, #d4c5b5 40%, #c9b8a4 100%); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
+    .hero-placeholder-text { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--muted); letter-spacing: 4px; text-transform: uppercase; opacity: 0.6; }
+    .hero-placeholder-sub { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); opacity: 0.8; }
+    .hero-badge { position: absolute; bottom: 30px; left: 30px; background: var(--black); color: var(--cream); padding: 14px 20px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
+    .hero-badge span { display: block; font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; }
+
+    /* ══ MARQUEE ══ */
+    .marquee-bar { background: var(--black); padding: 13px 0; overflow: hidden; }
+    .marquee-track { display: flex; animation: marquee 20s linear infinite; white-space: nowrap; }
+    .marquee-track span { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-light); padding: 0 40px; }
+    .marquee-track span.dot { color: var(--gold); padding: 0; }
+
+    /* ══ SECTIONS ══ */
+    .section { padding: 100px 80px; }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-eyebrow { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 56px); font-weight: 300; line-height: 1.1; }
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    /* ══ CATEGORIES ══ */
+    .categories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+    .cat-card { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; }
+    .cat-card:first-child { grid-row: span 2; aspect-ratio: unset; }
+    .cat-bg { width: 100%; height: 100%; transition: transform 0.6s ease; }
+    .cat-card:hover .cat-bg { transform: scale(1.04); }
+    .cat-bg img { width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.6s ease; }
+    .cat-card:hover .cat-bg img { transform: scale(1.04); }
+    .cat-bg-1 { background: linear-gradient(160deg, #d4c5b5, #b8a090); }
+    .cat-bg-4 { background: linear-gradient(160deg, #d4d0c5, #b0aa90); }
+    .cat-inner { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%); }
+    .cat-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 8px; }
+    .cat-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: #fff; line-height: 1.1; }
+    .cat-link { margin-top: 12px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.3s; width: fit-content; }
+    .cat-link::after { content: '→'; transition: transform 0.3s; }
+    .cat-link:hover { color: var(--gold-light); }
+    .cat-link:hover::after { transform: translateX(4px); }
+
+    /* ══ PRODUCTS ══ */
+    .products-section { background: var(--cream); padding: 100px 80px; }
+    .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+    .product-card { cursor: pointer; }
+    .product-img { aspect-ratio: 3/4; position: relative; overflow: hidden; margin-bottom: 20px; background: #e8e0d8; }
+    .product-img > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform 0.5s ease; }
+    .product-card:hover .product-img > img { transform: scale(1.05); }
+    .product-fallback { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 10px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+    .product-fallback .fallback-icon { font-size: 44px; }
+    .product-badge { position: absolute; top: 14px; left: 14px; z-index: 2; background: var(--gold); color: var(--black); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 10px; }
+    .product-wish { position: absolute; top: 14px; right: 14px; z-index: 2; width: 34px; height: 34px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer; opacity: 0; transition: opacity 0.3s; border: none; }
+    .product-card:hover .product-wish { opacity: 1; }
+    .product-category { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .product-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; margin-bottom: 8px; color: var(--black); }
+    .product-price { font-size: 14px; color: var(--charcoal); letter-spacing: 1px; }
+    .product-price .original { text-decoration: line-through; color: var(--muted); margin-right: 8px; }
+    .product-add { margin-top: 14px; width: 100%; background: transparent; border: 1px solid var(--charcoal); color: var(--charcoal); padding: 11px; font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; opacity: 0; }
+    .product-card:hover .product-add { opacity: 1; }
+    .product-add:hover { background: var(--black); color: var(--cream); border-color: var(--black); }
+
+    /* ══ BANNER ══ */
+    .banner-section { background: var(--black); padding: 100px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .banner-text .section-eyebrow { color: var(--gold); }
+    .banner-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4.5vw, 68px); font-weight: 300; color: var(--cream); line-height: 1.05; margin-bottom: 24px; }
+    .banner-title em { font-style: italic; color: var(--gold); }
+    .banner-desc { font-size: 15px; color: #8a8178; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
+    .banner-image { aspect-ratio: 4/5; background: linear-gradient(135deg, #2a2520, #1a1510); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .banner-image img { width:100%; height:100%; object-fit:cover; display:block; }
+    .banner-img-text { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold); letter-spacing: 6px; text-transform: uppercase; opacity: 0.5; }
+
+    /* ══ TESTIMONIALS ══ */
+    .testimonials { padding: 100px 80px; text-align: center; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+    .testi-card { padding: 40px 32px; border: 1px solid rgba(184,154,106,0.2); text-align: left; transition: border-color 0.3s; }
+    .testi-card:hover { border-color: var(--gold); }
+    .testi-stars { color: var(--gold); letter-spacing: 3px; font-size: 14px; margin-bottom: 20px; }
+    .testi-text { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; line-height: 1.7; color: var(--charcoal); font-style: italic; margin-bottom: 24px; }
+    .testi-author { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+
+    /* ══ NEWSLETTER ══ */
+    .newsletter { background: linear-gradient(135deg, var(--cream) 0%, #ede5d8 100%); padding: 80px; text-align: center; }
+    .newsletter-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 52px); font-weight: 300; margin-bottom: 16px; }
+    .newsletter-desc { color: var(--muted); font-size: 15px; margin-bottom: 40px; font-weight: 300; }
+    .newsletter-form { display: flex; max-width: 480px; margin: 0 auto; }
+    .newsletter-input { flex: 1; padding: 16px 20px; border: 1px solid rgba(184,154,106,0.3); background: white; font-family: 'Jost', sans-serif; font-size: 13px; color: var(--charcoal); outline: none; min-width: 0; }
+    .newsletter-input::placeholder { color: var(--muted); }
+    .newsletter-btn { padding: 16px 28px; background: var(--black); color: var(--cream); border: none; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; white-space: nowrap; flex-shrink: 0; }
+    .newsletter-btn:hover { background: var(--gold); }
+
+    /* ══ FOOTER ══ */
+    footer { background: var(--black); color: #6a6058; padding: 80px 80px 40px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+    .footer-brand .nav-logo { display: block; margin-bottom: 20px; color: var(--cream); }
+    .footer-brand p { font-size: 13px; line-height: 1.8; font-weight: 300; max-width: 260px; }
+    .footer-socials { display: flex; gap: 16px; margin-top: 28px; }
+    .footer-socials a { width: 36px; height: 36px; border: 1px solid #2a2a2a; display: flex; align-items: center; justify-content: center; color: #6a6058; text-decoration: none; font-size: 12px; transition: all 0.3s; }
+    .footer-socials a:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-col h4 { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--cream); margin-bottom: 24px; font-weight: 400; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col ul li a { color: #6a6058; text-decoration: none; font-size: 13px; font-weight: 300; transition: color 0.3s; }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .footer-bottom { border-top: 1px solid #1a1a1a; padding-top: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 12px; letter-spacing: 0.5px; }
+
+    /* ══ ANIMATIONS ══ */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ══ CATEGORY PAGE OVERLAY ══ */
+    .cat-overlay {
+      position: fixed; inset: 0; z-index: 1050;
+      background: var(--warm-white);
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+      overflow-y: auto;
+    }
+    .cat-overlay.open { transform: translateX(0); }
+    .cat-overlay-topbar {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 40px;
+      background: rgba(250,248,245,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(184,154,106,0.15);
+    }
+    .cat-overlay-body { padding: 50px 60px 100px; }
+    .cat-overlay-header { text-align: center; margin-bottom: 48px; }
+    .cat-overlay-count { font-size: 12px; letter-spacing: 2px; color: var(--muted); margin-top: 12px; text-transform: uppercase; }
+
+    /* ══ PRODUCT DETAIL PAGE OVERLAY ══ */
+    .pdp-overlay {
+      position: fixed; inset: 0; z-index: 1100;
+      background: var(--warm-white);
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+      overflow-y: auto;
+    }
+    .pdp-overlay.open { transform: translateX(0); }
+    .pdp-topbar {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 40px;
+      background: rgba(250,248,245,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(184,154,106,0.15);
+    }
+    .pdp-back {
+      display: flex; align-items: center; gap: 10px;
+      background: none; border: none; cursor: pointer;
+      font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--charcoal); transition: color 0.3s;
+    }
+    .pdp-back:hover { color: var(--gold); }
+    .pdp-back-arrow { font-size: 18px; transition: transform 0.3s; }
+    .pdp-back:hover .pdp-back-arrow { transform: translateX(-4px); }
+    .pdp-breadcrumb { font-size: 11px; letter-spacing: 1.5px; color: var(--muted); }
+    .pdp-breadcrumb span { color: var(--gold); }
+
+    .pdp-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0; min-height: calc(100vh - 74px); }
+
+    /* LEFT: image gallery */
+    .pdp-gallery { position: sticky; top: 74px; height: calc(100vh - 74px); display: flex; gap: 12px; padding: 36px; background: var(--cream); }
+    .pdp-thumbs { display: flex; flex-direction: column; gap: 10px; width: 72px; flex-shrink: 0; }
+    .pdp-thumb {
+      width: 72px; height: 90px; background: #ddd5c8; cursor: pointer;
+      border: 2px solid transparent; overflow: hidden; transition: border-color 0.3s;
+    }
+    .pdp-thumb.active { border-color: var(--gold); }
+    .pdp-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .pdp-main-img { flex: 1; position: relative; overflow: hidden; }
+    .pdp-main-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: opacity 0.3s ease; }
+    .pdp-main-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 16px; font-family: 'Cormorant Garamond', serif;
+      font-size: 18px; color: var(--muted); letter-spacing: 4px;
+    }
+    .pdp-main-placeholder .big-icon { font-size: 72px; }
+    .pdp-img-tag {
+      position: absolute; top: 20px; left: 20px;
+      background: var(--gold); color: var(--black);
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 6px 12px;
+    }
+    .pdp-zoom-hint { position: absolute; bottom: 16px; right: 16px; font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+
+    /* RIGHT: product info */
+    .pdp-info { padding: 56px 60px 60px 52px; }
+    .pdp-category-tag { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .pdp-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3.5vw, 52px); font-weight: 300; line-height: 1.05; margin-bottom: 16px; }
+    .pdp-rating { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+    .pdp-stars { color: var(--gold); font-size: 15px; letter-spacing: 3px; }
+    .pdp-rating-count { font-size: 12px; color: var(--muted); letter-spacing: 1px; }
+    .pdp-divider { height: 1px; background: rgba(184,154,106,0.2); margin: 28px 0; }
+    .pdp-price-row { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; flex-wrap: wrap; }
+    .pdp-price-main { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; color: var(--black); }
+    .pdp-price-original { font-size: 18px; color: var(--muted); text-decoration: line-through; }
+    .pdp-discount { font-size: 12px; letter-spacing: 1px; color: #5a8a5a; background: rgba(90,138,90,0.1); padding: 4px 10px; }
+    .pdp-tax-note { font-size: 11px; color: var(--muted); margin-bottom: 28px; }
+    .pdp-desc { font-size: 14px; color: var(--muted); line-height: 1.9; font-weight: 300; margin-bottom: 32px; }
+    .pdp-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--charcoal); margin-bottom: 12px; display: flex; justify-content: space-between; }
+    .pdp-label a { color: var(--gold); text-decoration: none; font-size: 10px; }
+    .pdp-sizes { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+    .size-btn { min-width: 48px; height: 48px; border: 1px solid rgba(42,42,42,0.25); background: none; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 1px; cursor: pointer; transition: all 0.25s; color: var(--charcoal); padding: 0 12px; }
+    .size-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .size-btn.selected { background: var(--black); color: var(--cream); border-color: var(--black); }
+    .size-btn.out { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
+    .pdp-qty { display: flex; align-items: center; gap: 0; margin-bottom: 32px; border: 1px solid rgba(42,42,42,0.2); width: fit-content; }
+    .qty-btn { width: 44px; height: 44px; background: none; border: none; font-size: 18px; cursor: pointer; color: var(--charcoal); transition: background 0.2s; }
+    .qty-btn:hover { background: var(--cream); }
+    .qty-num { width: 56px; text-align: center; font-size: 15px; font-family: 'Cormorant Garamond', serif; color: var(--black); border: none; background: none; pointer-events: none; }
+    .pdp-ctas { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+    .pdp-btn-bag { width: 100%; padding: 18px; background: var(--black); color: var(--cream); border: 1px solid var(--black); font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+    .pdp-btn-bag:hover { background: var(--gold); border-color: var(--gold); }
+    .pdp-btn-wish { width: 100%; padding: 18px; background: transparent; color: var(--charcoal); border: 1px solid rgba(42,42,42,0.3); font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+    .pdp-btn-wish:hover { border-color: var(--rose); color: var(--rose); }
+    .pdp-delivery { background: var(--cream); padding: 20px 24px; margin-bottom: 32px; }
+    .pdp-delivery-row { display: flex; align-items: flex-start; gap: 14px; padding: 8px 0; border-bottom: 1px solid rgba(184,154,106,0.15); }
+    .pdp-delivery-row:last-child { border-bottom: none; }
+    .pdp-delivery-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+    .pdp-delivery-text strong { display: block; font-size: 12px; letter-spacing: 1px; color: var(--charcoal); margin-bottom: 2px; }
+    .pdp-delivery-text span { font-size: 11px; color: var(--muted); font-weight: 300; }
+    .pdp-accordion { border-top: 1px solid rgba(184,154,106,0.2); }
+    .acc-item { border-bottom: 1px solid rgba(184,154,106,0.2); }
+    .acc-header { width: 100%; background: none; border: none; padding: 18px 0; display: flex; justify-content: space-between; align-items: center; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--charcoal); cursor: pointer; text-align: left; }
+    .acc-header:hover { color: var(--gold); }
+    .acc-icon { font-size: 20px; transition: transform 0.3s; color: var(--gold); }
+    .acc-item.open .acc-icon { transform: rotate(45deg); }
+    .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .acc-body-inner { padding: 0 0 20px; font-size: 13px; color: var(--muted); line-height: 1.9; font-weight: 300; }
+    .acc-body-inner ul { padding-left: 18px; }
+    .acc-body-inner ul li { margin-bottom: 6px; }
+
+    /* ══ TOAST ══ */
+    .toast {
+      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(120px);
+      background: var(--black); color: var(--cream);
+      padding: 14px 28px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+      z-index: 2000; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      white-space: nowrap; max-width: 90vw; text-align: center;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ══ FILTER BAR ══ */
+    .filter-bar { display: flex; gap: 10px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+    .filter-btn { padding: 10px 22px; border: 1px solid rgba(42,42,42,0.2); background: none; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; color: var(--charcoal); transition: all 0.25s; }
+    .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .filter-btn.active { background: var(--black); color: var(--cream); border-color: var(--black); }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE — TABLET (≤1100px)
+    ══════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .banner-section { padding: 80px 48px; gap: 48px; }
+      .section, .products-section, .testimonials { padding: 80px 48px; }
+      .newsletter { padding: 64px 48px; }
+      footer { padding: 64px 48px 40px; }
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE — TABLET (≤900px)
+    ══════════════════════════════════════ */
+    @media (max-width: 900px) {
+      nav { padding: 16px 28px; }
+      .nav-links { display: none; }
+
+      /* Hero stack */
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 64px; }
+      .hero-text { padding: 52px 28px 44px; order: 2; }
+      .hero-text::before { display: none; }
+      .hero-image { order: 1; min-height: 55vw; max-height: 420px; }
+      .hero-badge { bottom: 20px; left: 20px; padding: 12px 16px; }
+      .hero-badge span { font-size: 22px; }
+
+      /* Categories */
+      .categories-grid { grid-template-columns: 1fr; gap: 3px; }
+      .cat-card:first-child { grid-row: unset; aspect-ratio: 16/7; }
+      .cat-card { aspect-ratio: 16/7; }
+
+      /* Banner */
+      .banner-section { grid-template-columns: 1fr; padding: 60px 28px; gap: 40px; }
+      .banner-image { aspect-ratio: 16/9; }
+
+      /* Testimonials */
+      .testimonials-grid { grid-template-columns: 1fr; gap: 20px; }
+      .section, .products-section, .testimonials { padding: 60px 28px; }
+      .newsletter { padding: 56px 28px; }
+
+      /* Footer */
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+      footer { padding: 56px 28px 36px; }
+
+      /* PDP — stack vertically */
+      .pdp-body { grid-template-columns: 1fr; }
+      .pdp-gallery { position: static; height: auto; min-height: 68vw; max-height: 480px; padding: 20px; }
+      .pdp-thumbs { width: 56px; }
+      .pdp-thumb { width: 56px; height: 70px; }
+      .pdp-info { padding: 32px 28px 60px; }
+      .pdp-topbar { padding: 14px 20px; }
+      .cat-overlay-topbar { padding: 14px 20px; }
+      .cat-overlay-body { padding: 36px 28px 80px; }
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE — MOBILE (≤600px)
+    ══════════════════════════════════════ */
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .nav-logo { font-size: 18px; letter-spacing: 2px; }
+      .nav-icons a:not(.cart-btn) { display: none; }
+
+      /* Hero */
+      .hero { padding-top: 58px; }
+      .hero-text { padding: 36px 20px 36px; }
+      .hero-eyebrow { font-size: 10px; margin-bottom: 16px; }
+      .hero-title { font-size: clamp(36px, 9vw, 52px); margin-bottom: 20px; }
+      .hero-desc { font-size: 14px; margin-bottom: 32px; max-width: 100%; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .btn-primary, .btn-outline { width: 100%; text-align: center; padding: 15px 24px; font-size: 10px; }
+      .hero-image { min-height: 70vw; max-height: 360px; }
+      .hero-badge { bottom: 16px; left: 16px; font-size: 10px; padding: 10px 14px; }
+      .hero-badge span { font-size: 18px; }
+
+      /* Marquee */
+      .marquee-track span { font-size: 10px; padding: 0 24px; letter-spacing: 2px; }
+
+      /* Section headers */
+      .section, .products-section, .testimonials { padding: 52px 20px; }
+      .section-header { margin-bottom: 40px; }
+      .newsletter { padding: 48px 20px; }
+      .section-eyebrow { font-size: 10px; }
+      footer { padding: 48px 20px 32px; }
+
+      /* Categories */
+      .cat-card { aspect-ratio: 4/3; }
+      .cat-card:first-child { aspect-ratio: 4/3; }
+      .cat-inner { padding: 20px; }
+      .cat-name { font-size: 22px; }
+
+      /* Products — 2 per row on mobile */
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .product-img { margin-bottom: 12px; }
+      .product-name { font-size: 16px; }
+      .product-price { font-size: 13px; }
+      .product-category { font-size: 9px; }
+      /* Always show add-to-bag & wish on mobile (no hover state) */
+      .product-add { opacity: 1; font-size: 9px; padding: 9px; letter-spacing: 1.5px; }
+      .product-wish { opacity: 1; }
+
+      /* Banner */
+      .banner-section { padding: 52px 20px; gap: 32px; }
+      .banner-desc { font-size: 14px; margin-bottom: 28px; }
+      .banner-image { aspect-ratio: 4/3; }
+
+      /* Testimonials */
+      .testi-card { padding: 28px 20px; }
+      .testi-text { font-size: 16px; }
+
+      /* Newsletter */
+      .newsletter-form { flex-direction: column; gap: 12px; max-width: 100%; }
+      .newsletter-input { width: 100%; }
+      .newsletter-btn { width: 100%; padding: 16px; }
+
+      /* Footer */
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .footer-brand p { max-width: 100%; }
+
+      /* PDP overlay */
+      .pdp-gallery { min-height: 80vw; max-height: 320px; padding: 12px; gap: 8px; }
+      .pdp-thumbs { width: 44px; gap: 6px; }
+      .pdp-thumb { width: 44px; height: 56px; }
+      .pdp-info { padding: 24px 20px 60px; }
+      .pdp-title { font-size: clamp(24px, 7vw, 40px); }
+      .pdp-price-main { font-size: 28px; }
+      .pdp-topbar, .cat-overlay-topbar { padding: 12px 16px; }
+      .pdp-breadcrumb { display: none; }
+      .pdp-back { font-size: 10px; }
+      .pdp-delivery { padding: 16px 16px; }
+      .pdp-delivery-row { gap: 10px; }
+      .pdp-delivery-text span { font-size: 10px; }
+      .cat-overlay-body { padding: 28px 16px 80px; }
+      .cat-overlay-topbar { padding: 12px 16px; }
+      .filter-btn { padding: 9px 16px; font-size: 10px; letter-spacing: 1.5px; }
+
+      /* Toast */
+      .toast { font-size: 10px; padding: 12px 20px; bottom: 20px; }
+
+      /* Sizes */
+      .size-btn { min-width: 40px; height: 40px; font-size: 11px; }
+      .pdp-btn-bag, .pdp-btn-wish { padding: 16px; font-size: 10px; }
+    }
+
+    /* ══════════════════════════════════════
+       TOUCH DEVICE — always-visible controls
+    ══════════════════════════════════════ */
+    @media (hover: none) {
+      .product-add { opacity: 1; }
+      .product-wish { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ MAIN SITE ══ -->
+  <div id="main-site">
+    <nav>
+      <a class="nav-logo" href="#">NUVERA <span>FASHION</span></a>
+      <div class="nav-icons">
+        <a href="#about">Our Story</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-text">
+        <p class="hero-eyebrow">New Collection — SS 2026</p>
+        <h1 class="hero-title">Adorned in <em>Gold,</em><br>Made for Her</h1>
+        <p class="hero-desc">Discover handcrafted jewellery that celebrates the women who wear it. Rings, bracelets, necklaces — each piece a work of art, made only for her.</p>
+        <div class="hero-actions">
+          <a href="#collections" class="btn-primary">Shop Now</a>
+          <a href="#about" class="btn-outline">Our Story</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="neck1.jpeg" alt="Fine Jewellery" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="hero-image-inner" style="display:none;">
+          <div class="hero-placeholder-text">Fine Jewellery</div>
+          <div class="hero-placeholder-sub">Spring / Summer 2026</div>
+        </div>
+        <div class="hero-badge"><span>200+</span> Jewellery Pieces</div>
+      </div>
+    </section>
+
+    <div class="marquee-bar">
+      <div class="marquee-track">
+        <span>New Arrivals</span><span class="dot">✦</span>
+        <span>Free Shipping Over ₹2000</span><span class="dot">✦</span>
+        <span>Handcrafted Jewellery</span><span class="dot">✦</span>
+        <span>Gold &amp; Diamond Pieces</span><span class="dot">✦</span>
+        <span>Only For Her</span><span class="dot">✦</span>
+        <span>Shop The Collection</span><span class="dot">✦</span>
+        <span>New Arrivals</span><span class="dot">✦</span>
+        <span>Free Shipping Over ₹2000</span><span class="dot">✦</span>
+        <span>Handcrafted Jewellery</span><span class="dot">✦</span>
+        <span>Gold &amp; Diamond Pieces</span><span class="dot">✦</span>
+        <span>Only For Her</span><span class="dot">✦</span>
+        <span>Shop The Collection</span><span class="dot">✦</span>
+      </div>
+    </div>
+
+    <section class="section" id="collections">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Browse By</span>
+        <h2 class="section-title">Shop By <em>Category</em></h2>
+      </div>
+      <div class="categories-grid reveal">
+        <div class="cat-card" onclick="openCategory('rings-bracelets')">
+          <div class="cat-bg cat-bg-1">
+            <img src="ring1.jpeg" alt="Rings & Bracelets" onerror="this.style.display='none'" />
+          </div>
+          <div class="cat-inner"><span class="cat-label">Women's Jewellery</span><h3 class="cat-name">Rings &amp; Bracelets</h3><a href="#" onclick="event.preventDefault()" class="cat-link">Explore</a></div>
+        </div>
+        <div class="cat-card" onclick="openCategory('necklaces')">
+          <div class="cat-bg cat-bg-4">
+            <img src="neck2.jpeg" alt="Necklaces" onerror="this.style.display='none'" />
+          </div>
+          <div class="cat-inner"><span class="cat-label">Women's Jewellery</span><h3 class="cat-name">Necklaces</h3><a href="#" onclick="event.preventDefault()" class="cat-link">Explore</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="products-section" id="women">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Featured</span>
+        <h2 class="section-title">New <em>Arrivals</em></h2>
+      </div>
+      <div class="products-grid" id="home-products-grid"></div>
+      <div style="text-align:center; margin-top:48px;">
+        <button class="btn-primary reveal" onclick="openAllProducts()">View All Products</button>
+      </div>
+    </section>
+
+    <section class="banner-section" id="about">
+      <div class="banner-text">
+        <span class="section-eyebrow">Our Philosophy</span>
+        <h2 class="banner-title">Jewellery That <em>Speaks For Her</em></h2>
+        <p class="banner-desc">At Nuvera Fashion, every piece is crafted for the women who wears it. We believe fine jewellery is not just an accessory — it is a memory, a milestone, a celebration of her.</p>
+        <a href="#collections" class="btn-primary" style="background:var(--gold);border-color:var(--gold);color:var(--black);">Explore Collection</a>
+      </div>
+      <div class="banner-image reveal">
+        <img src="neck3.jpeg" alt="Our Story" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="banner-img-text" style="display:none;">Nuvera</div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Testimonials</span>
+        <h2 class="section-title">What Our Customers <em>Say</em></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><p class="testi-text">"Nuvera Fashion has become my go-to for every occasion. The gold bracelet I bought is simply stunning — I get compliments every time."</p><p class="testi-author">— Priya Menon, Kozhikode</p></div>
+        <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><p class="testi-text">"The diamond bracelet is even more beautiful in person. Premium quality, lovely packaging, and delivered so quickly!"</p><p class="testi-author">— Amal Krishnan, Kochi</p></div>
+        <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><p class="testi-text">"Gifted my mother the golden necklace for her birthday. She absolutely loves it. Nuvera's craftsmanship is truly special."</p><p class="testi-author">— Fatima Nizar, Calicut</p></div>
+      </div>
+    </section>
+
+    <div class="newsletter reveal">
+      <p class="section-eyebrow" style="margin-bottom:16px;">Stay Updated</p>
+      <h2 class="newsletter-title">Join the Nuvera Circle</h2>
+      <p class="newsletter-desc">Subscribe for exclusive jewellery offers, new arrivals, and styling inspiration — made for her.</p>
+      <div class="newsletter-form">
+        <input class="newsletter-input" type="email" placeholder="Your email address" />
+        <button class="newsletter-btn">Subscribe</button>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="nav-logo" href="#">NUVERA <span>FASHION</span></a>
+          <p>A curated fine jewellery destination for women. Rings, bracelets, necklaces — each piece crafted with love. Beauty is not just what you wear — it's who you are.</p>
+          <div class="footer-socials"><a href="#">f</a><a href="#">in</a><a href="#">ig</a><a href="#">yt</a></div>
+        </div>
+        <div class="footer-col"><h4>Shop</h4><ul><li><a href="#">Rings</a></li><li><a href="#">Bracelets</a></li><li><a href="#">Necklaces</a></li><li><a href="#">New Arrivals</a></li></ul></div>
+        <div class="footer-col"><h4>Help</h4><ul><li><a href="#">Track Order</a></li><li><a href="#">Return &amp; Exchange</a></li><li><a href="#">Shipping Info</a></li><li><a href="#">FAQs</a></li><li><a href="#">Contact Us</a></li></ul></div>
+        <div class="footer-col"><h4>Contact</h4><ul><li><a href="#">📍 Malappuram, Kerala</a></li><li><a href="tel:+91XXXXXXXXXX">📞 +91 XXXXX XXXXX</a></li><li><a href="mailto:hello@nuverafashion.com">✉ hello@nuverafashion.com</a></li><li style="margin-top:16px;"><a href="#">Mon – Sat: 10am – 8pm</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Nuvera Fashion. All rights reserved.</p>
+        <p>Privacy Policy &nbsp;|&nbsp; Terms of Service</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ══ ALL PRODUCTS OVERLAY ══ -->
+  <div class="cat-overlay" id="all-overlay">
+    <div class="cat-overlay-topbar">
+      <button class="pdp-back" onclick="closeAllProducts()">
+        <span class="pdp-back-arrow">←</span>
+        <span>Back to Home</span>
+      </button>
+      <div class="pdp-breadcrumb">Nuvera Fashion &nbsp;/&nbsp; <span>All Products</span></div>
+    </div>
+    <div class="cat-overlay-body">
+      <div class="cat-overlay-header">
+        <span class="section-eyebrow">Complete Collection</span>
+        <h2 class="section-title">All <em>Products</em></h2>
+        <p class="cat-overlay-count" id="all-overlay-count"></p>
+      </div>
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
+        <button class="filter-btn" onclick="filterProducts('ring', this)">Rings</button>
+        <button class="filter-btn" onclick="filterProducts('bracelet', this)">Bracelets</button>
+        <button class="filter-btn" onclick="filterProducts('necklace', this)">Necklaces</button>
+      </div>
+      <div class="products-grid" id="all-overlay-grid"></div>
+    </div>
+  </div>
+
+  <!-- ══ CATEGORY PAGE OVERLAY ══ -->
+  <div class="cat-overlay" id="cat-overlay">
+    <div class="cat-overlay-topbar">
+      <button class="pdp-back" onclick="closeCategory()">
+        <span class="pdp-back-arrow">←</span>
+        <span>Back to Home</span>
+      </button>
+      <div class="pdp-breadcrumb">Nuvera Fashion &nbsp;/&nbsp; <span id="cat-overlay-name">Category</span></div>
+    </div>
+    <div class="cat-overlay-body">
+      <div class="cat-overlay-header">
+        <span class="section-eyebrow" id="cat-overlay-eyebrow">Women's Jewellery</span>
+        <h2 class="section-title" id="cat-overlay-title">Category</h2>
+        <p class="cat-overlay-count" id="cat-overlay-count"></p>
+      </div>
+      <div class="products-grid" id="cat-overlay-grid"></div>
+    </div>
+  </div>
+
+  <!-- ══ PRODUCT DETAIL PAGE OVERLAY ══ -->
+  <div class="pdp-overlay" id="pdp-overlay">
+    <div class="pdp-topbar">
+      <button class="pdp-back" onclick="closePDP()">
+        <span class="pdp-back-arrow">←</span>
+        <span>Back to Shop</span>
+      </button>
+      <div class="pdp-breadcrumb">Nuvera Fashion &nbsp;/&nbsp; <span id="pdp-breadcrumb-name">Product</span></div>
+    </div>
+
+    <div class="pdp-body">
+      <div class="pdp-gallery">
+        <div class="pdp-thumbs" id="pdp-thumbs"></div>
+        <div class="pdp-main-img" id="pdp-main-img">
+          <div class="pdp-main-placeholder" id="pdp-main-placeholder">
+            <span class="big-icon" id="pdp-placeholder-icon">💍</span>
+            <span id="pdp-placeholder-text">Loading...</span>
+          </div>
+          <img id="pdp-main-image" src="" alt="" style="display:none;" />
+          <div class="pdp-img-tag" id="pdp-img-tag" style="display:none;"></div>
+          <div class="pdp-zoom-hint">Hover to explore</div>
+        </div>
+      </div>
+
+      <div class="pdp-info">
+        <p class="pdp-category-tag" id="pdp-category"></p>
+        <h1 class="pdp-title" id="pdp-title"></h1>
+        <div class="pdp-rating">
+          <span class="pdp-stars">★★★★★</span>
+          <span class="pdp-rating-count" id="pdp-rating-count"></span>
+        </div>
+        <div class="pdp-divider"></div>
+        <div class="pdp-price-row">
+          <span class="pdp-price-main" id="pdp-price-main"></span>
+          <span class="pdp-price-original" id="pdp-price-original"></span>
+          <span class="pdp-discount" id="pdp-discount"></span>
+        </div>
+        <p class="pdp-tax-note">Inclusive of all taxes. Free shipping on this order.</p>
+        <div class="pdp-divider"></div>
+        <p class="pdp-desc" id="pdp-desc"></p>
+        <div id="pdp-size-section">
+          <p class="pdp-label">Select Size <a href="#">Size Guide</a></p>
+          <div class="pdp-sizes" id="pdp-sizes"></div>
+        </div>
+        <p class="pdp-label">Quantity</p>
+        <div class="pdp-qty">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <span class="qty-num" id="qty-display">1</span>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+        <div class="pdp-ctas">
+          <button class="pdp-btn-bag" onclick="orderNowFromPDP()">🛍 Order Now</button>
+          <button class="pdp-btn-wish" onclick="toggleWish(this)">♡ &nbsp; Add to Wishlist</button>
+        </div>
+        <div class="pdp-delivery">
+          <div class="pdp-delivery-row">
+            <span class="pdp-delivery-icon">🚚</span>
+            <div class="pdp-delivery-text">
+              <strong>Free Delivery</strong>
+              <span>Delivered in 3–5 business days to Kozhikode</span>
+            </div>
+          </div>
+          <div class="pdp-delivery-row">
+            <span class="pdp-delivery-icon">↩️</span>
+            <div class="pdp-delivery-text">
+              <strong>Easy 7-Day Returns</strong>
+              <span>Return or exchange within 7 days of delivery</span>
+            </div>
+          </div>
+          <div class="pdp-delivery-row">
+            <span class="pdp-delivery-icon">🔒</span>
+            <div class="pdp-delivery-text">
+              <strong>Secure Payments</strong>
+              <span>UPI, Cards, Net Banking, Cash on Delivery (Under 3–4 KM)</span>
+            </div>
+          </div>
+        </div>
+        <div class="pdp-accordion">
+          <div class="acc-item">
+            <button class="acc-header" onclick="toggleAcc(this)">Product Details <span class="acc-icon">+</span></button>
+            <div class="acc-body"><div class="acc-body-inner" id="acc-details"></div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-header" onclick="toggleAcc(this)">Material &amp; Care <span class="acc-icon">+</span></button>
+            <div class="acc-body"><div class="acc-body-inner" id="acc-care"></div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-header" onclick="toggleAcc(this)">Shipping &amp; Returns <span class="acc-icon">+</span></button>
+            <div class="acc-body">
+              <div class="acc-body-inner">
+                <ul>
+                  <li>Free shipping on all orders above ₹2,000</li>
+                  <li>Delivery within 3–5 business days</li>
+                  <li>Easy 7-day returns from date of delivery</li>
+                  <li>Exchange available on size/colour issues</li>
+                  <li>COD available on orders below ₹10,000</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script type="module">
+    // Firebase SDK v10 (latest stable — fixes compatibility issues with v9.22.2)
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+
+    // Firebase configuration
+    // FIX: storageBucket corrected from ".firebasestorage.app" → ".appspot.com"
+    const firebaseConfig = {
+      apiKey: "AIzaSyCLAEnuSluPVv5YjYR-_Bp42OGhbqtgXnk",
+      authDomain: "nuvera-fashion-a2760.firebaseapp.com",
+      projectId: "nuvera-fashion-a2760",
+      storageBucket: "nuvera-fashion-a2760.appspot.com",
+      messagingSenderId: "160085598885",
+      appId: "1:160085598885:web:0fe6e0724981c1049b634c",
+      measurementId: "G-87CK7ZG0G0"
+    };
+
+    // Initialize Firebase app
+    const app = initializeApp(firebaseConfig);
+    window.firebaseApp = app;
+
+    // FIX: Analytics guarded with isSupported() to prevent crashes in
+    // environments where analytics is blocked (ad blockers, Safari ITP, etc.)
+    isSupported().then((supported) => {
+      if (supported) {
+        const analytics = getAnalytics(app);
+        window.firebaseAnalytics = analytics;
+      }
+    }).catch((err) => {
+      console.warn("Firebase Analytics not available:", err);
+    });
+
+    // FIX: Dispatch a custom event so non-module scripts can safely wait
+    // for Firebase to be ready instead of relying on load order
+    window.dispatchEvent(new Event("firebaseReady"));
+  </script>
+
+  <script>
+    var categoryConfig = {
+      'rings-bracelets': {
+        name: 'Rings & Bracelets', eyebrow: "Women's Jewellery",
+        title: 'Rings <em>&</em> Bracelets',
+        filter: function(p) { return p.category.includes('Ring') || p.category.includes('Bracelet'); }
+      },
+      'necklaces': {
+        name: 'Necklaces', eyebrow: "Women's Jewellery",
+        title: 'Neck<em>laces</em>',
+        filter: function(p) { return p.category.includes('Necklace'); }
+      }
+    };
+
+    var products = [
+      { id:0, name:'Golden Ring', category:'Women · Rings', badge:'New', icon:'💍', image:'ring1.jpeg', extraImages:['ring2.jpeg'], price:'₹2,499', originalPrice:null, discount:null, rating:'4.8 (124 reviews)', desc:'A beautifully crafted golden ring that exudes elegance and sophistication. Designed for the modern woman who appreciates timeless jewellery, this ring is perfect for everyday wear or special occasions.', sizes:['5','6','7','8','9','10'], sizeLabel:'Ring Size (US)', details:'<ul><li>Material: 18K Gold Plated Brass</li><li>Finish: High Polish</li><li>Stone: None (Plain Band)</li><li>Weight: Approx. 4g</li><li>Country of Origin: India</li></ul>', care:'<ul><li>Avoid contact with water, perfumes, and lotions</li><li>Wipe with a soft dry cloth after use</li><li>Store in the pouch provided</li><li>Keep away from direct sunlight</li></ul>' },
+      { id:1, name:'Diamond Bracelet', category:'Women · Bracelets', badge:'Bestseller', icon:'💎', image:'ring2.jpeg', extraImages:['ring1.jpeg'], price:'₹1,499', originalPrice:'₹1,999', discount:'25% OFF', rating:'4.9 (312 reviews)', desc:'A stunning diamond-studded bracelet that brings sparkle and glamour to any look. Crafted with precision, each stone is set to maximize brilliance. A bestselling favourite at Nuvera Fashion.', sizes:['XS','S','M','L','XL'], sizeLabel:'Wrist Size', details:'<ul><li>Material: Silver-plated Alloy with CZ Stones</li><li>Stone Type: Cubic Zirconia (Diamond-look)</li><li>Closure: Lobster Clasp</li><li>Length: Adjustable 6–8 inches</li><li>Weight: Approx. 12g</li></ul>', care:'<ul><li>Do not submerge in water</li><li>Clean with a soft jewellery cloth</li><li>Store separately to avoid scratches</li><li>Avoid exposure to chemicals and perfumes</li></ul>' },
+      { id:2, name:'Golden Bracelet', category:'Women · Bracelets', badge:null, icon:'📿', image:'ring1.jpeg', extraImages:['ring2.jpeg'], price:'₹3,799', originalPrice:null, discount:null, rating:'4.7 (88 reviews)', desc:'A classic golden bracelet with intricate detailing that adds warmth and richness to your wrist. The timeless design complements both traditional and contemporary looks effortlessly.', sizes:['XS','S','M','L'], sizeLabel:'Wrist Size', details:'<ul><li>Material: 22K Gold Plated Brass</li><li>Pattern: Floral Filigree</li><li>Closure: Push-in Type</li><li>Length: 7 inches</li><li>Weight: Approx. 18g</li></ul>', care:'<ul><li>Avoid water and moisture</li><li>Wipe gently with a dry cloth</li><li>Store in provided box</li><li>Avoid contact with sharp objects</li></ul>' },
+      { id:3, name:'Golden Necklace', category:'Women · Necklaces', badge:'Sale', icon:'📿', image:'neck1.jpeg', extraImages:['neck2.jpeg'], price:'₹2,999', originalPrice:'₹4,500', discount:'33% OFF', rating:'4.6 (196 reviews)', desc:'An elegant golden necklace designed to make a statement. With its layered design and delicate craftsmanship, this necklace is the perfect centrepiece for any outfit — from sarees to evening gowns.', sizes:['14"','16"','18"','20"'], sizeLabel:'Chain Length', details:'<ul><li>Material: 18K Gold Plated Sterling Silver Base</li><li>Design: Layered Pendant Chain</li><li>Closure: Spring Ring Clasp</li><li>Length Options: 14" to 20"</li><li>Weight: Approx. 22g</li></ul>', care:'<ul><li>Avoid water, sweat, and perfumes</li><li>Use anti-tarnish cloth for cleaning</li><li>Store in airtight zip pouch</li><li>Do not twist or pull the chain</li></ul>' },
+      { id:4, name:'Sunlit Pendant', category:'Women · Necklaces', icon:'📿', image:'neck3.jpeg', extraImages:[], price:'₹3,199', originalPrice:null, discount:null, rating:'4.8 (88 reviews)', desc:'A radiant pendant necklace with a warm gold finish, designed to catch light beautifully and elevate any neckline.', sizes:['16"','18"','20"'], sizeLabel:'Chain Length', details:'<ul><li>Material: Gold Plated Alloy</li><li>Design: Sunburst Pendant</li><li>Closure: Lobster Clasp</li><li>Weight: Approx. 18g</li></ul>', care:'<ul><li>Wipe with a soft cloth after use</li><li>Avoid chemicals and moisture</li><li>Store separately to prevent scratches</li></ul>' },
+      { id:5, name:'Moonlit Locket', category:'Women · Necklaces', icon:'📿', image:'neck4.jpeg', extraImages:[], price:'₹3,499', originalPrice:null, discount:null, rating:'4.9 (102 reviews)', desc:'A delicate locket with an ethereal moonlit glow, perfect for romantic everyday wear and keepsake style.', sizes:['16"','18"','20"'], sizeLabel:'Chain Length', details:'<ul><li>Material: 18K Gold Plated Brass</li><li>Design: Decorative Locket</li><li>Closure: Spring Ring Clasp</li><li>Weight: Approx. 20g</li></ul>', care:'<ul><li>Keep away from perfumes and sweat</li><li>Clean with a dry cloth</li><li>Store in a jewellery pouch</li></ul>' },
+      { id:6, name:'Radiant Halo', category:'Women · Necklaces', badge:'12% OFF', icon:'📿', image:'neck5.jpeg', extraImages:[], price:'₹3,799', originalPrice:'₹4,299', discount:'12% OFF', rating:'4.7 (70 reviews)', desc:'A halo-style gold necklace accentuated with subtle shimmer, designed to bring luxury to both day and evening looks.', sizes:['16"','18"','20"'], sizeLabel:'Chain Length', details:'<ul><li>Material: Gold Plated Sterling Silver</li><li>Design: Halo Pendant</li><li>Closure: Lobster Clasp</li><li>Weight: Approx. 19g</li></ul>', care:'<ul><li>Store away from humidity</li><li>Use a jewellery polishing cloth</li><li>Avoid contact with water and lotion</li></ul>' },
+      { id:7, name:'Petal Drop Necklace', category:'Women · Necklaces', icon:'📿', image:'neck6.jpeg', extraImages:[], price:'₹3,299', originalPrice:null, discount:null, rating:'4.8 (54 reviews)', desc:'A delicate drop necklace inspired by petals, offering a feminine silhouette and effortless charm.', sizes:['14"','16"','18"'], sizeLabel:'Chain Length', details:'<ul><li>Material: Gold Plated Alloy</li><li>Design: Floral Drop Pendant</li><li>Closure: Lobster Clasp</li><li>Weight: Approx. 16g</li></ul>', care:'<ul><li>Keep dry and clean with soft cloth</li><li>Store in original box</li><li>Do not expose to harsh chemicals</li></ul>' },
+      { id:8, name:'Ornate Chain', category:'Women · Necklaces', icon:'📿', image:'neck7.jpeg', extraImages:[], price:'₹3,599', originalPrice:null, discount:null, rating:'4.6 (41 reviews)', desc:'An ornate statement chain with intricate links, made to stand out while staying elegant and wearable.', sizes:['16"','18"','20"'], sizeLabel:'Chain Length', details:'<ul><li>Material: Gold Plated Brass</li><li>Design: Ornate Link Chain</li><li>Closure: Lobster Clasp</li><li>Weight: Approx. 21g</li></ul>', care:'<ul><li>Wipe clean after every wear</li><li>Keep in a dry place</li><li>Avoid impact and abrasion</li></ul>' },
+      { id:9, name:'Celestial Collar', category:'Women · Necklaces', badge:'10% OFF', icon:'📿', image:'neck8.jpeg', extraImages:[], price:'₹3,899', originalPrice:'₹4,299', discount:'10% OFF', rating:'4.9 (63 reviews)', desc:'A refined collar necklace that blends celestial detailing with a modern finish, ideal for special occasions.', sizes:['14"','16"','18"'], sizeLabel:'Chain Length', details:'<ul><li>Material: Gold Plated Silver</li><li>Design: Collar Necklace</li><li>Closure: Spring Ring Clasp</li><li>Weight: Approx. 20g</li></ul>', care:'<ul><li>Avoid perfume and body lotion contact</li><li>Store flat in a jewellery case</li><li>Use a soft cloth for polishing</li></ul>' },
+      { id:10, name:'Dawn Bead Necklace', category:'Women · Necklaces', icon:'📿', image:'neck1.jpeg', extraImages:[], price:'₹3,299', originalPrice:null, discount:null, rating:'4.7 (39 reviews)', desc:'A beaded necklace with soft tones and elegant geometry, perfect for everyday layering with other pieces.', sizes:['16"','18"'], sizeLabel:'Chain Length', details:'<ul><li>Material: Gold Plated Alloy with Bead Details</li><li>Design: Beaded Necklace</li><li>Closure: Lobster Clasp</li><li>Weight: Approx. 17g</li></ul>', care:'<ul><li>Keep away from water and oils</li><li>Store separately to protect finish</li><li>Buff gently with a microfiber cloth</li></ul>' },
+      { id:11, name:'Elegant Drop Chain', category:'Women · Necklaces', badge:'11% OFF', icon:'📿', image:'neck2.jpeg', extraImages:[], price:'₹3,999', originalPrice:'₹4,499', discount:'11% OFF', rating:'4.8 (52 reviews)', desc:'A sculptural drop chain necklace with refined lines and a polished finish, designed for modern elegance.', sizes:['16"','18"','20"'], sizeLabel:'Chain Length', details:'<ul><li>Material: Gold Plated Brass</li><li>Design: Sculptural Drop Chain</li><li>Closure: Spring Ring Clasp</li><li>Weight: Approx. 23g</li></ul>', care:'<ul><li>Do not expose to moisture</li><li>Use a soft cloth after wear</li><li>Store in the original packaging</li></ul>' },
+      { id:12, name:'Minimal Gold Ring', category:'Women · Rings', icon:'💍', image:'ring2.jpeg', extraImages:[], price:'₹2,299', originalPrice:null, discount:null, rating:'4.7 (74 reviews)', desc:'A minimalist gold ring with a delicate profile, built for everyday wear and easy stacking.', sizes:['5','6','7','8','9'], sizeLabel:'Ring Size (US)', details:'<ul><li>Material: 18K Gold Plated Brass</li><li>Finish: High Polish</li><li>Style: Minimal Band</li><li>Weight: Approx. 4g</li></ul>', care:'<ul><li>Keep dry and away from perfumes</li><li>Wipe with a soft cloth after wear</li><li>Store in a pouch</li></ul>' },
+      { id:13, name:'Signature Statement Ring', category:'Women · Rings', icon:'💍', image:'ring1.jpeg', extraImages:[], price:'₹2,799', originalPrice:null, discount:null, rating:'4.8 (81 reviews)', desc:'A bold statement ring with polished curves and refined detail, designed to draw attention with understated luxury.', sizes:['5','6','7','8','9','10'], sizeLabel:'Ring Size (US)', details:'<ul><li>Material: Gold Plated Alloy</li><li>Finish: Satin and High Polish</li><li>Style: Statement Band</li><li>Weight: Approx. 7g</li></ul>', care:'<ul><li>Store separately to avoid scratches</li><li>Clean with a soft dry cloth</li><li>Avoid direct contact with water and lotions</li></ul>' }
+    ];
+
+    var currentQty = 1;
+    var currentPdpProductId = null;
+    var currentPdpSize = '';
+    var whatsappNumber = '+917558053235';
+
+    function sendWhatsappMessage(product, quantity, size) {
+      var message = 'Hello, I would like to order:\n' +
+        '*Product:* ' + product.name + '\n' +
+        '*Price:* ' + product.price + '\n' +
+        (size ? '*Size:* ' + size + '\n' : '') +
+        '*Quantity:* ' + (quantity || 1) + '\n\n' +
+        'Please share the order details and availability.';
+      var cleanNumber = whatsappNumber.replace(/[^0-9]/g, '');
+      window.open('https://wa.me/' + cleanNumber + '?text=' + encodeURIComponent(message), '_blank');
+    }
+
+    function orderNow(productId) {
+      var product = products.find(p => p.id === productId);
+      if (!product) return;
+      sendWhatsappMessage(product, 1, '');
+    }
+
+    function buildProductCard(p) {
+      var card = document.createElement('div');
+      card.className = 'product-card';
+      card.setAttribute('data-product', p.id);
+      
+      var html = `
+        <div class="product-img">
+          ${p.image ? `<img src="${p.image}" alt="${p.name}" />` : ''}
+          <div class="product-fallback" style="background:linear-gradient(135deg,#ddd0c5,#c0ad9e);">
+            <span class="fallback-icon">${p.icon}</span>
+            <span>${p.name}</span>
+          </div>
+          ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
+          <button class="product-wish">♡</button>
+        </div>
+        <p class="product-category">${p.category}</p>
+        <h3 class="product-name">${p.name}</h3>
+        <p class="product-price">
+          ${p.originalPrice ? `<span class="original">${p.originalPrice}</span>` : ''}
+          ${p.price}
+        </p>
+        <button class="product-add">Order Now</button>
+      `;
+      
+      card.innerHTML = html;
+
+      // Image error handling
+      var img = card.querySelector('img');
+      if (img) {
+        img.addEventListener('error', function() {
+          img.style.display = 'none';
+          var fb = card.querySelector('.product-fallback');
+          if (fb) fb.style.display = 'flex';
+        });
+      }
+
+      // Wish button
+      var wishBtn = card.querySelector('.product-wish');
+      wishBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.textContent = this.textContent === '♡' ? '♥' : '♡';
+        this.style.color = this.textContent === '♥' ? '#c9a49a' : '';
+      });
+
+      // Add to order button
+      var addBtn = card.querySelector('.product-add');
+      addBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        orderNow(p.id);
+      });
+
+      // Card click opens PDP
+      card.addEventListener('click', function() {
+        openPDP(p.id);
+      });
+
+      return card;
+    }
+
+    function renderHomeProducts() {
+      var grid = document.getElementById('home-products-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      products.slice(0, 4).forEach(function(p) {
+        grid.appendChild(buildProductCard(p));
+      });
+    }
+
+    function openAllProducts() {
+      document.querySelectorAll('#filter-bar .filter-btn').forEach(function(b){ 
+        b.classList.remove('active'); 
+      });
+      document.querySelector('#filter-bar .filter-btn').classList.add('active');
+      renderAllGrid(products);
+      document.getElementById('all-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('all-overlay').scrollTop = 0;
+    }
+    
+    function closeAllProducts() {
+      document.getElementById('all-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    
+    function filterProducts(type, btn) {
+      document.querySelectorAll('#filter-bar .filter-btn').forEach(function(b){ 
+        b.classList.remove('active'); 
+      });
+      btn.classList.add('active');
+      
+      var filtered;
+      if (type === 'all') {
+        filtered = products;
+      } else {
+        filtered = products.filter(function(p){ 
+          return p.category.toLowerCase().includes(type); 
+        });
+      }
+      renderAllGrid(filtered);
+    }
+    
+    function renderAllGrid(list) {
+      var grid = document.getElementById('all-overlay-grid');
+      grid.innerHTML = '';
+      document.getElementById('all-overlay-count').textContent = list.length + ' piece' + (list.length !== 1 ? 's' : '');
+      list.forEach(function(p) { 
+        grid.appendChild(buildProductCard(p)); 
+      });
+    }
+
+    function openCategory(catId) {
+      var config = categoryConfig[catId];
+      if (!config) return;
+      
+      document.getElementById('cat-overlay-name').textContent = config.name;
+      document.getElementById('cat-overlay-eyebrow').textContent = config.eyebrow;
+      document.getElementById('cat-overlay-title').innerHTML = config.title;
+      
+      var filtered = products.filter(config.filter);
+      document.getElementById('cat-overlay-count').textContent = filtered.length + ' piece' + (filtered.length !== 1 ? 's' : '');
+      
+      var grid = document.getElementById('cat-overlay-grid');
+      grid.innerHTML = '';
+      filtered.forEach(function(p) { 
+        grid.appendChild(buildProductCard(p)); 
+      });
+      
+      document.getElementById('cat-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('cat-overlay').scrollTop = 0;
+    }
+    
+    function closeCategory() {
+      document.getElementById('cat-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function openPDP(productId) {
+      var p = products.find(prod => prod.id === productId);
+      if (!p) return;
+      
+      currentPdpProductId = productId;
+      currentQty = 1;
+      currentPdpSize = '';
+      
+      document.getElementById('qty-display').textContent = '1';
+      document.getElementById('pdp-breadcrumb-name').textContent = p.name;
+      document.getElementById('pdp-category').textContent = p.category;
+      document.getElementById('pdp-title').textContent = p.name;
+      document.getElementById('pdp-rating-count').textContent = p.rating;
+      document.getElementById('pdp-price-main').textContent = p.price;
+      
+      var origEl = document.getElementById('pdp-price-original');
+      var discEl = document.getElementById('pdp-discount');
+      origEl.style.display = p.originalPrice ? '' : 'none';
+      if (p.originalPrice) origEl.textContent = p.originalPrice;
+      discEl.style.display = p.discount ? '' : 'none';
+      if (p.discount) discEl.textContent = p.discount;
+      
+      document.getElementById('pdp-desc').textContent = p.desc;
+      
+      var tagEl = document.getElementById('pdp-img-tag');
+      tagEl.style.display = p.badge ? '' : 'none';
+      if (p.badge) tagEl.textContent = p.badge;
+
+      // Main image
+      var imgEl = document.getElementById('pdp-main-image');
+      var placeholderEl = document.getElementById('pdp-main-placeholder');
+      document.getElementById('pdp-placeholder-icon').textContent = p.icon;
+      document.getElementById('pdp-placeholder-text').textContent = p.name;
+      
+      imgEl.style.display = 'none';
+      placeholderEl.style.display = 'flex';
+      
+      if (p.image) {
+        imgEl.src = p.image;
+        imgEl.alt = p.name;
+        imgEl.onload = function() {
+          imgEl.style.display = 'block';
+          placeholderEl.style.display = 'none';
+        };
+        imgEl.onerror = function() {
+          imgEl.style.display = 'none';
+          placeholderEl.style.display = 'flex';
+        };
+      }
+
+      // Thumbnails
+      var thumbsEl = document.getElementById('pdp-thumbs');
+      thumbsEl.innerHTML = '';
+      var allImages = [p.image].concat(p.extraImages || []).filter(Boolean);
+      
+      allImages.forEach(function(src, i) {
+        var t = document.createElement('div');
+        t.className = 'pdp-thumb' + (i === 0 ? ' active' : '');
+        
+        var thumbImg = document.createElement('img');
+        thumbImg.src = src;
+        thumbImg.alt = p.name;
+        t.appendChild(thumbImg);
+        
+        t.addEventListener('click', function() {
+          document.querySelectorAll('.pdp-thumb').forEach(function(x){ 
+            x.classList.remove('active'); 
+          });
+          t.classList.add('active');
+          imgEl.src = src;
+          imgEl.style.display = 'block';
+          placeholderEl.style.display = 'none';
+        });
+        thumbsEl.appendChild(t);
+      });
+
+      // Sizes
+      var sizeSection = document.getElementById('pdp-size-section');
+      var sizesEl = document.getElementById('pdp-sizes');
+      sizesEl.innerHTML = '';
+      
+      if (p.sizes && p.sizes.length > 0) {
+        document.querySelector('#pdp-size-section .pdp-label').firstChild.textContent = p.sizeLabel + ' ';
+        sizeSection.style.display = '';
+        
+        p.sizes.forEach(function(sz, i) {
+          var btn = document.createElement('button');
+          btn.className = 'size-btn' + (i === 0 ? ' selected' : '');
+          btn.textContent = sz;
+          if (i === 0) currentPdpSize = sz;
+          
+          btn.addEventListener('click', function() {
+            document.querySelectorAll('.size-btn').forEach(function(b){ 
+              b.classList.remove('selected'); 
+            });
+            btn.classList.add('selected');
+            currentPdpSize = sz;
+          });
+          sizesEl.appendChild(btn);
+        });
+      } else {
+        sizeSection.style.display = 'none';
+      }
+
+      document.getElementById('acc-details').innerHTML = p.details || '<ul><li>No details available</li></ul>';
+      document.getElementById('acc-care').innerHTML = p.care || '<ul><li>No care instructions</li></ul>';
+
+      // Reset accordions
+      document.querySelectorAll('.acc-item').forEach(function(item) {
+        item.classList.remove('open');
+        var body = item.querySelector('.acc-body');
+        if (body) body.style.maxHeight = '0';
+      });
+
+      document.getElementById('pdp-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('pdp-overlay').scrollTop = 0;
+    }
+    
+    function closePDP() {
+      document.getElementById('pdp-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    
+    function changeQty(delta) {
+      currentQty = Math.max(1, Math.min(10, currentQty + delta));
+      document.getElementById('qty-display').textContent = currentQty;
+    }
+    
+    function orderNowFromPDP() {
+      if (currentPdpProductId === null) return;
+      var product = products.find(p => p.id === currentPdpProductId);
+      if (!product) return;
+      sendWhatsappMessage(product, currentQty, currentPdpSize);
+    }
+    
+    function toggleWish(btn) {
+      if (btn.textContent.includes('♡')) { 
+        btn.textContent = '♥  Wishlisted'; 
+        btn.style.color = 'var(--rose)'; 
+        btn.style.borderColor = 'var(--rose)'; 
+      } else { 
+        btn.textContent = '♡  Add to Wishlist'; 
+        btn.style.color = ''; 
+        btn.style.borderColor = ''; 
+      }
+    }
+    
+    function toggleAcc(btn) {
+      var item = btn.closest('.acc-item');
+      var body = item.querySelector('.acc-body');
+      var isOpen = item.classList.contains('open');
+      
+      // Close all
+      document.querySelectorAll('.acc-item').forEach(function(i) { 
+        i.classList.remove('open'); 
+        var b = i.querySelector('.acc-body');
+        if (b) b.style.maxHeight = '0'; 
+      });
+      
+      if (!isOpen) { 
+        item.classList.add('open'); 
+        body.style.maxHeight = body.scrollHeight + 'px'; 
+      }
+    }
+    
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(function() { 
+        t.classList.remove('show'); 
+      }, 2500);
+    }
+
+    // Initialize everything
+    function initializeSite() {
+      // Render home products
+      renderHomeProducts();
+
+      // Newsletter
+      var newsletterBtn = document.querySelector('.newsletter-btn');
+      if (newsletterBtn) {
+        newsletterBtn.addEventListener('click', function() {
+          var input = document.querySelector('.newsletter-input');
+          if (input && input.value.trim() !== '') {
+            input.value = 'Thank you for subscribing! ✓';
+            input.style.color = 'var(--gold)';
+          }
+        });
+      }
+
+      // Keyboard escape support
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          if (document.getElementById('pdp-overlay').classList.contains('open')) {
+            closePDP();
+          } else if (document.getElementById('cat-overlay').classList.contains('open')) {
+            closeCategory();
+          } else if (document.getElementById('all-overlay').classList.contains('open')) {
+            closeAllProducts();
+          }
+        }
+      });
+
+      // Scroll reveal
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry, i) {
+          if (entry.isIntersecting) {
+            setTimeout(function() {
+              entry.target.classList.add('visible');
+            }, i * 80);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        observer.observe(el);
+      });
+    }
+
+    // Auto-init
+    window.onload = initializeSite;
+  </script>
+</body>
+</html>
